@@ -1,0 +1,21 @@
+img = imread ('pout.tif'); % image read
+data = double(img);
+[M,N] = size(img)
+H = imhist(img); %image histogram.
+Hc = cumsum(H);%cumulative  histogram.
+
+for i = 1:length(Hc)
+
+        T(i) = round((255/(M*N)) * Hc(i));
+    
+end 
+T=T';
+img_heq = uint8(T);
+
+for i = 1:1:M         %go through rows
+    for j = 1:1:N     %columns
+        img_heq(i, j) = T(img(i,j) );
+    end
+end
+img_heq
+disp(size(img_heq))
